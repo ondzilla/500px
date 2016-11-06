@@ -1,64 +1,62 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import './App.css';
+import SearchResult from './SearchResult';
+import {deepOrange800} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import _500px from '../lib/500px.js';
+import './css/styles.css';
 import data from '../data/delsbo.json';
+import AppBar from 'material-ui/AppBar';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import IconButton from 'material-ui/IconButton';
+import SearchIcon from 'material-ui/svg-icons/action/search';
 
-class ResultItem extends Component {
+const muiTheme = getMuiTheme({
+    palette: {
+
+        accent1Color: deepOrange800
+    }
+});
+
+class SearchComponent extends Component {
     render() {
+
+        /*var _500px = window._500px;
+         _500px.init({
+         sdk_key: '26aa2230f2ef55c070ef4efe62fab4c97fc305be'
+         });
+
+         _500px.api("/photos/search", {term: 'Delsbo'}, function(response) {
+         console.log("response: ", response);
+         });*/
+
         return (
-            <div className="result-item">
-                <img src={this.props.image.image_url} alt={this.props.image.name} />
+            <div className="search-component">
+                <AppBar
+                    title="500px Search"
+                    showMenuIconButton={false}
+                    iconElementRight={<IconButton><SearchIcon /></IconButton>}
+                    onRightIconButtonTouchTap={function(event) {
+                        console.log("tapped right icon");
+                    }}
+                />
+                <SearchResult data={data}/>
             </div>
-        )
-    }
-}
-
-class ResultTitle extends Component {
-    render() {
-        return (
-            <div className="result-title">Search Results</div>
-        )
-    }
-}
-
-class SearchResult extends Component {
-
-    render() {
-        var items = [];
-
-        console.log("props: ", this.props);
-
-        this.props.data.photos.forEach(function(image) {
-            items.push(<ResultItem key={image.id} image={image} />);
-        });
-
-        return (
-            <div className="search-results">
-                <ResultTitle />
-                {items}
-            </div>
-        )
-    }
-}
-
-class SearchBar extends Component {
-    render() {
-        return (
-            <form>
-                <input type="text" placeholder="Search..."/>
-                <input type="button" value="Search"/>
-            </form>
-        )
+        );
     }
 }
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        injectTapEventPlugin();
+    }
+
     render() {
         return (
-            <div className="one-pager">
-                <SearchBar />
-                <SearchResult data={data}/>
-            </div>
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <SearchComponent data={data}/>
+            </MuiThemeProvider>
         );
     }
 }
