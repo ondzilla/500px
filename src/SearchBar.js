@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import FontIcon from 'material-ui/FontIcon';
 import IconButton from 'material-ui/IconButton';
 import SearchIcon from 'material-ui/svg-icons/action/search';
 
-const style = {
-    margin: 0
-};
-
 class SearchBar extends Component {
 
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+
+        var path = "/search/" + this.refs.searchTermInput.input.value;
+        this.props.onSubmit(path);
+    }
 
     render() {
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <TextField
-                    style={style}
+                    id="q"
+                    name="q"
+                    hintText="Search"
+                    ref="searchTermInput"
                 />
                 <IconButton
                     label="Search"
-                    style={style}
+                    type="submit"
                 ><SearchIcon /></IconButton>
-            </div>
+            </form>
         )
     }
 }

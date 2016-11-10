@@ -1,23 +1,49 @@
 import React, { Component } from 'react';
-import {GridList, GridTile} from 'material-ui/GridList';
-import Subheader from 'material-ui/Subheader';
-import {Grid, Row} from 'react-flexbox-grid/lib';
+import ResultItem from './ResultItem';
 
+var Container = require('muicss/lib/react/container');
+var Row = require('muicss/lib/react/row');
+var Col = require('muicss/lib/react/col');
 
 class SearchResult extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: props.data
+        }
+    }
+
+    componentWillReceiveProps(props) {
+        this.setState({
+            data: props.data
+        });
+    }
+
     render() {
-        /*var items = [];
+        var items = [];
 
-         this.props.data.photos.forEach(function (image) {
-         items.push(<ResultItem key={image.id} image={image}/>);
-         });*/
+        if (this.state.data.photos && this.state.data.photos.length > 0) {
 
-        return (
-            <Grid fluid>
+            // TODO: If last item is rendered, call back to add next page etc..
+            this.props.data.photos.forEach(function (image) {
+                items.push(<Col xs="12" sm="6" md="3" lg="2" key={image.id}><ResultItem image={image}/></Col>);
+            });
 
-            </Grid>
-        )
+            return (
+                <div className="search-result">
+                    <Container fluid={true}>
+                        <Row>
+                            {items}
+                        </Row>
+                    </Container>
+                </div>
+            );
+        } else {
+            return (
+                <div>Search rendered no results...</div>
+            )
+        }
 
         /*return (
          <GridList
