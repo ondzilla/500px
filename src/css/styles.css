@@ -1,8 +1,98 @@
+.app-bar {
+    background-color: #880E4F;
+    color: #ccc;
+    -webkit-font-smoothing: antialiased;
+    height: 4em;
+    line-height: 4em;
+    overflow: hidden;
+    -webkit-transition: height 0.5s;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    transition: height 0.5s;
+}
+
+.app-bar a {
+    display: inline-block;
+    color: #ccc;
+}
+
+.search-brand {
+    display: inline-block;
+    float: left;
+    padding-left: 1em;
+}
+.pure-menu-heading {
+    font-size: 1.5em;
+    padding: 0 0.1em;
+}
+.pure-menu-heading:hover {
+    text-decoration: none;
+}
+
+@media (max-width: 35.499em) {
+    .search-brand {
+        display: none;
+    }
+}
+
+.search-menu {
+    text-align: right;
+    padding: 0 1em;
+}
+
+.search-button {
+    border: 0;
+    background: none;
+    padding: 0 1em;
+}
+.search-button:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+
+.search-close-button {
+    padding-left: 0.5em;
+}
+
+.search-bar {
+    width: 0em;
+    display: inline-block;
+    -webkit-transition: width 0.2s;
+    -moz-transition: width 0.2s;
+    -ms-transition: width 0.2s;
+    transition: width 0.2s;
+}
+
+.search-bar.open {
+    width: 15em;
+}
+
+.search-bar input {
+    width: 100%;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #ccc 4%);
+    background-position: -200px 0;
+    background-size: 200px 100%;
+    background-repeat: no-repeat;
+    color: darken(#ccc, 20%);
+}
+
+.search-bar input:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.home {
+    padding-left: 2em;
+}
+
 .search-result {
-    padding-top: 15px;
     text-align: center;
 }
 
 .result-item {
-    margin-bottom: 15px;
+    margin-top: 1em;
+    padding: 1em;
 }
