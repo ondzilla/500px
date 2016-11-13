@@ -5,3 +5,7 @@ body {
   margin: 0;
   padding: 0;
 }
+a {
+  color: #880E4F;
+  text-decoration: none;
+}
