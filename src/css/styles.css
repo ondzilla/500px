@@ -96,3 +96,8 @@
     margin-top: 1em;
     padding: 1em;
 }
+
+.result-item a {
+    color: #000000;
+    text-decoration: none;
+}
