@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
+/**
+ * Displays an app bar at the top of the viewport, containing the search widget.
+ */
 class AppBar extends Component {
 
     constructor(props) {
         super(props);
         this.toggleSearchBar = this.toggleSearchBar.bind(this);
+        this.navigateHome = this.navigateHome.bind(this);
     }
 
     toggleSearchBar(event) {
@@ -12,25 +16,25 @@ class AppBar extends Component {
         var bar = this.refs['searchWidget'];
         if (!bar.classList.contains('open')) {
             bar.classList.add('open');
+            this.refs['searchTerm'].focus();
         } else {
             var path = '/search/' + encodeURIComponent(this.refs['searchTerm'].value);
-            this.props.onSubmit(path);
-
+            this.props.navigate(path);
         }
     }
 
-    handleSubmit(event) {
+    navigateHome(event) {
         event.preventDefault();
+        this.props.navigate('/');
     }
 
     render() {
-        console.log("AppBar#render()");
         return (
             <div className="pure-g app-bar">
                 <div className="pure-u-1 pure-u-sm-1-24 pure-u-md-1-5">
                     <div className="pure-menu pure-menu-horizontal">
                         <div className="search-brand">
-                            <a href="#" className="pure-menu-heading search-heading">500px Image
+                            <a href="/" className="pure-menu-heading search-heading" onClick={this.navigateHome}>500px Image
                                 Search</a>
                         </div>
                     </div>
@@ -51,5 +55,11 @@ class AppBar extends Component {
         )
     }
 }
+AppBar.propTypes = {
+    /**
+     * Callback to have the app navigate to a new route.
+     */
+    navigate: React.PropTypes.func.isRequired
+};
 
 export default AppBar;

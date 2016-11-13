@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import './css/styles.css';
 import AppBar from './AppBar';
-import '../lib/500px.js';
-import data from '../data/delsbo.json';
+import './css/styles.css';
 
+/**
+ * The all-encompassing App.
+ */
 class App extends Component {
     constructor(props) {
         super(props);
@@ -15,10 +16,9 @@ class App extends Component {
     }
 
     render() {
-        console.log("App#render - data: ", data);
         return (
             <div className="search-component">
-                <AppBar onSubmit={this.navigate}/>
+                <AppBar navigate={this.navigate}/>
                 {this.props.children}
             </div>
         );
