@@ -10,7 +10,7 @@ The project was bootstrapped with [Create React App](https://github.com/facebook
 npm install -g create-react-app
 ```
 
-Once that is done, the project can be cloned and built.
+Once that is done, the project can be cloned and installed.
 ```
 git clone https://github.com/ondzilla/500px.git
 cd 500px
