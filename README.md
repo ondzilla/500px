@@ -16,3 +16,10 @@ git clone https://github.com/ondzilla/500px.git
 cd 500px
 npm install
 ```
+## Building & Running
+To build and run the project in a local development server, simply run the following command.
+```
+npm start
+```
+
+The built result should be available at http://localhost:3000/
